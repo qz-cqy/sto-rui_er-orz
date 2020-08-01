@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!--
+      <script language="JavaScript" src="script/add.js"></script> 
+    -->
+    <title>rui_er AK IOI!</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"> 
+    <script>
+      var note;
+      var dataRND = new Array();
+      dataRND[0]='<p>rui_er: I AK IOI</p>';
+      dataRND[1]='<p>rui_er: 马上就 LGM 了 /se</p>';
+      dataRND[2]='<a href=\"http:\/\/rui_er.ak-ioi.cf\">QAQ</a>';
+      dataRND[3]='<img src=\"\/img\/1.png\" class=\"tp\" \/>';
+      dataRND[4]='<p>rui_er: I 阿克 BJOI</p>';
+      dataRND[5]='<p>rui_er: 你好菜哟~</p>';
+      dataRND[6]='<p>rui_er: 我是神</p>';
+      function reload() {
+        document.getElementById("eff").innerHTML="<p>当前膜拜效率： "+localStorage.eff_mo+" 每次</p>";
+        document.getElementById("show").innerHTML="<p>您已经膜拜了 "+localStorage.mo_rui_er+" 次</p>";
+        document.getElementById("autoshow").innerHTML="<p>每 5 秒自动膜拜 "+localStorage.autoMo+" 次</p>";
+      }
+      function judgeAc() {
+        if(localStorage.mo100 != 1 && localStorage.mo_rui_er >= 100) {
+          localStorage.mo100 = 1;
+        }
+        if(localStorage.mo500 != 1 && localStorage.mo_rui_er >= 500) {
+          localStorage.mo500 = 1;
+        }
+        if(localStorage.mo1500 != 1 && localStorage.mo_rui_er >= 1500) {
+          localStorage.mo1500 = 1;
+        }
+        if(localStorage.eff3 != 1 && localStorage.eff_mo >= 3) {
+          localStorage.eff3 = 1;
+        }
+        if(localStorage.eff10 != 1 && localStorage.eff_mo >= 10) {
+          localStorage.eff10 = 1;
+        }
+        if(localStorage.autoeff5 != 1 && localStorage.autoMo >= 5) {
+          localStorage.autoeff5 = 1;
+        }
+      }
+      function add() {
+        if(localStorage.mo_rui_er == undefined) {
+          localStorage.mo_rui_er = parseInt(0);
+        }
+        if(localStorage.eff_mo == undefined) {
+          localStorage.eff_mo = 0;
+        }
+        localStorage.mo_rui_er = parseInt(localStorage.mo_rui_er) + parseInt(localStorage.eff_mo);
+        reload();
+        judgeAc();
+      }
+      function addAuto() {
+        if(localStorage.mo_rui_er == undefined) {
+          localStorage.mo_rui_er = parseInt(0);
+        }
+        if(localStorage.autoMo == undefined) {
+          localStorage.autoMo = 0;
+        }
+        localStorage.mo_rui_er = parseInt(localStorage.mo_rui_er) + parseInt(localStorage.autoMo);
+        reload();
+        judgeAc();
+      }
+      function achievement() {
+        if(parseInt(localStorage.mo100) == 1) {
+          document.getElementById("arch-mo100").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-mo100").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+        if(parseInt(localStorage.mo500) == 1) {
+          document.getElementById("arch-mo500").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-mo500").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+        if(parseInt(localStorage.mo1500) == 1) {
+          document.getElementById("arch-mo1500").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-mo1500").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+        if(parseInt(localStorage.eff3) == 1) {
+          document.getElementById("arch-eff3").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-eff3").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+        if(parseInt(localStorage.eff10) == 1) {
+          document.getElementById("arch-eff10").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-eff10").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+        if(parseInt(localStorage.autoeff5) == 1) {
+          document.getElementById("arch-autoeff5").innerHTML="<p style=\"color:green;\">已达成</p>";
+        }
+        else {
+          document.getElementById("arch-autoeff5").innerHTML="<p style=\"color:red;\">未达成</p>";
+        }
+      }
+      function do_set() {
+        var a = document.getElementById('set-time').value;
+        if(parseInt(a) == 0) {
+          clearInterval(note);
+        }
+        else {
+          if(parseInt(a) < 10000) {
+            a = 10000;
+          }
+          note = setInterval(achievement, a);
+        }
+      }
+      function calc_upd() {
+        var a = Math.floor((parseInt(localStorage.eff_mo)**1.3)*100);
+        document.getElementById("show-upd").innerHTML="<p>升级需要花费 "+a+" 次膜拜</p>";
+        setTimeout(function(){
+          document.getElementById("show-upd").innerHTML="";
+        }, 1500);
+        return a;
+      }
+      function do_upd() {
+        var a = calc_upd();
+        if(parseInt(localStorage.mo_rui_er) < a) {
+          alert("膜拜次数不足，请稍后重试");
+          return null;
+        }
+        localStorage.mo_rui_er = parseInt(localStorage.mo_rui_er) - a;
+        localStorage.eff_mo ++;
+        reload();
+        return null;
+      }
+      function calc_autoupd() {
+        var a = Math.floor((parseInt(localStorage.autoMo)**1.3)*250)+300;
+        document.getElementById("show-autoupd").innerHTML="<p>升级需要花费 "+a+" 次膜拜</p>";
+        setTimeout(function(){
+          document.getElementById("show-autoupd").innerHTML="";
+        }, 1500);
+        return a;
+      }
+      function do_autoupd() {
+        var a = calc_autoupd();
+        if(parseInt(localStorage.mo_rui_er) < a) {
+          alert("膜拜次数不足，请稍后重试");
+          return null;
+        }
+        localStorage.mo_rui_er = parseInt(localStorage.mo_rui_er) - a;
+        localStorage.autoMo ++;
+        reload();
+        return null;
+      }
+      function changeRnd() {
+        var a = Math.floor(Math.random()*7);
+        document.getElementById("randTH").innerHTML=dataRND[a];
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      console.log("欢迎按下 F12 的你！如果是 OIer 那么更好。项目地址 https://github.com/qz-cqy/sto-rui_er-orz");
+      var qwq = setInterval(addAuto, 5000);
+    </script>
+    <div class="top">
+      <h1 class="mid">rui_er AK IOI!</h1>
+      <h2 class="subTt">膜 rui_er</h2>
+      <div class="friends">
+        <p style="text-align:center">
+          <a class="friends" href="https://www.ak-ioi.cf">博客</a> | <a class="friends" href="https://github.com/qz-cqy">GitHub</a>
+        </p>
+        <br>
+        <div>
+          <div id="randTH" style="display:inline;"><p>rui_er: I AK IOI</p></div>
+          <div style="float:right;display:inline;">
+            <button onclick="changeRnd()">换一换</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mid">
+      <div class="left">
+        <h3 class="subTt2">道具商店</h3>
+        <br>
+        <ul>
+          <li>
+            <p>提升膜拜效率 <div style="color:red;">需要花费膜拜次数</div></p>
+            <div id="show-upd"></div>
+            <button onclick="calc_upd()">显示花费</button>
+            <button onclick="do_upd()">购买（不可逆）</button>
+          </li>
+          <li>
+            <p>提升自动膜拜效率 <div style="color:red;">需要花费膜拜次数</div></p>
+            <div id="show-autoupd"></div>
+            <button onclick="calc_autoupd()">显示花费</button>
+            <button onclick="do_autoupd()">购买（不可逆）</button>
+          </li>
+        </ul>
+      </div>
+      <div class="main">
+        <h3 class="subTt2">膜拜</h3>
+        <br>
+        <button class="mo" onclick="add()">膜拜</button>
+        <br>
+        <div id="eff"></div>
+        <div id="show"></div>
+        <div id="autoshow"></div>
+      </div>
+      <div class="side">
+        <h3 class="subTt2">成就</h3>
+        <br>
+        <input type="text" id="set-time" placeholder="成就刷新区间（单位毫秒，至少为 10000，取消刷新请填写 0）" autocomplete="off" />
+        <br>
+        <button onclick="do_set()">设置</button>
+        <button onclick="achievement()">手动刷新</button>
+        <br>
+        <p>成就列表</p>
+        <ul>
+          <li>
+            成就：膜拜新手（膜拜 100 次）<div id="arch-mo100">请手动刷新查看</div>
+          </li>
+          <li>
+            成就：膜拜专家（膜拜 500 次）<div id="arch-mo500">请手动刷新查看</div>
+          </li>
+          <li>
+            成就：膜拜大师（膜拜 1500 次）<div id="arch-mo1500">请手动刷新查看</div>
+          </li>
+          <li>
+            成就：高效膜拜（膜拜效率达到 3 每次）<div id="arch-eff3">请手动刷新查看</div>
+          </li>
+          <li>
+            成就：超级膜拜（膜拜效率达到 10 每次）<div id="arch-eff10">请手动刷新查看</div>
+          </li>
+          <li>
+            成就：自动膜拜（自动膜拜效率达到 5 每五秒）<div id="arch-autoeff5">请手动刷新查看</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
