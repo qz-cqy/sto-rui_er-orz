@@ -5,6 +5,7 @@
     <!--
       <script language="JavaScript" src="script/add.js"></script> 
     -->
+    <script language="JavaScript" src="script/rands.js"></script>
     <title>rui_er AK IOI!</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"> 
     <script>
@@ -17,6 +18,7 @@
       dataRND[4]='<p>rui_er: I 阿克 BJOI</p>';
       dataRND[5]='<p>rui_er: 你好菜哟~</p>';
       dataRND[6]='<p>rui_er: 我是神</p>';
+      dataRND[7]='<p>rui_er: 我出的题真毒瘤 /fad</p>';
       function reload() {
         document.getElementById("eff").innerHTML="<p>当前膜拜效率： "+localStorage.eff_mo+" 每次</p>";
         document.getElementById("show").innerHTML="<p>您已经膜拜了 "+localStorage.mo_rui_er+" 次</p>";
@@ -153,7 +155,7 @@
         return null;
       }
       function changeRnd() {
-        var a = Math.floor(Math.random()*7);
+        var a = randint(0, 7);
         document.getElementById("randTH").innerHTML=dataRND[a];
       }
     </script>
@@ -173,7 +175,7 @@
         <br>
         <div>
           <div id="randTH" style="display:inline;"><p>rui_er: I AK IOI</p></div>
-          <div style="float:right;display:inline;">
+          <div style="display:inline;">
             <button onclick="changeRnd()">换一换</button>
           </div>
         </div>
