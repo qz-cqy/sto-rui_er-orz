@@ -16,6 +16,9 @@
       dataRND[5]='<p>rui_er: 你好菜哟~</p>';
       dataRND[6]='<p>rui_er: 我是神</p>';
       dataRND[7]='<p>rui_er: 我出的题真毒瘤 /fad</p>';
+      dataRND[8]='<p>rui_er: 我是紫名神犇</p>';
+      dataRND[9]='<p>rui_er: 就是个破黑题，咋做都行吧</p>';
+      dataRND[10]='<p>rui_er: 垃圾题，脚造数据，爬</p>';
       function reload() {
         document.getElementById("eff").innerHTML="<p>当前膜拜效率： "+localStorage.eff_mo+" 每次</p>";
         document.getElementById("show").innerHTML="<p>您已经膜拜了 "+localStorage.mo_rui_er+" 次</p>";
@@ -152,7 +155,7 @@
         return null;
       }
       function changeRnd() {
-        var a = randint(0, 7);
+        var a = randint(0, 10);
         document.getElementById("randTH").innerHTML=dataRND[a];
       }
     </script>
