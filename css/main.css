@@ -25,7 +25,7 @@ div.mid {
 }
 div.left {
   float:left;
-  width:calc(25vw);
+  width:25%;
   height:calc(65vh);
   display:inline;
   background-color:#66cdaa;
@@ -34,7 +34,7 @@ div.left {
 }
 div.main {
   float:left;
-  width:calc(50vw);
+  width:50%;
   height:calc(65vh);
   display:inline;
   background-color:#ffa07a;
@@ -43,7 +43,7 @@ div.main {
 }
 div.side {
   float:right;
-  width:calc(25vw);
+  width:25%;
   height:calc(65vh);
   display:inline;
   background-color:#66cdaa;
@@ -81,7 +81,7 @@ img.tp {
 	height:70px;	
 }
 div.announcement {
-  width:calc(100vw);
+  width:100%;
   height:calc(10vh);
   background-color:#ddff77;
   opacity:0.3;
