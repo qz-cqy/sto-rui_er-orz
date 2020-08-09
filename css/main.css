@@ -25,8 +25,8 @@ div.mid {
 }
 div.left {
   float:left;
-  width:25%;
-  height:calc(75vh);
+  width:calc(25vw);
+  height:calc(65vh);
   display:inline;
   background-color:#66cdaa;
   border:1px dotted #ff4500;
@@ -34,8 +34,8 @@ div.left {
 }
 div.main {
   float:left;
-  width:50%;
-  height:calc(75vh);
+  width:calc(50vw);
+  height:calc(65vh);
   display:inline;
   background-color:#ffa07a;
   border:1px dotted #ff4500;
@@ -43,8 +43,8 @@ div.main {
 }
 div.side {
   float:right;
-  height:calc(75vh);
-  width:25%;
+  width:calc(25vw);
+  height:calc(65vh);
   display:inline;
   background-color:#66cdaa;
   border:1px dotted #ff4500;
@@ -79,4 +79,14 @@ a.friends:hover, a.friends {
 }
 img.tp {
 	height:70px;	
+}
+div.announcement {
+  width:calc(100vw);
+  height:calc(10vh);
+  background-color:#ddff77;
+  opacity:0.3;
+  border-width:1px;
+  border-color:gray;
+  border-style:dotted;
+  box-sizing:border-box;
 }
