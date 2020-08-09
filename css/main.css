@@ -89,4 +89,5 @@ div.announcement {
   border-color:gray;
   border-style:dotted;
   box-sizing:border-box;
+  font-weight:bold;
 }
